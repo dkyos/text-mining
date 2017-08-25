@@ -5,27 +5,38 @@
 import nltk
 
 print ("="*10 + ' Word Tokenize Test: ' + "="*10)
-#doc1 = "This is a sentence."
-doc1 = (u'To jest zdanie.')
-tokens = nltk.word_tokenize(doc1)
+
+text = '''Compatibility of systems of linear constraints over the set of
+          natural numbers. Criteria of compatibility of a system of linear
+          Diophantine equations, strict inequations, and nonstrict inequations are
+          considered. Upper bounds for components of a minimal set of solutions
+          and algorithms of construction of minimal generating sets of solutions
+          for all types of systems are given. These criteria and the corresponding
+          algorithms for constructing a minimal supporting set of solutions can be
+          used in solving all the considered types of systems and systems of mixed
+          types.'''
+
+polish_text = '''Zgodność systemów liniowych ograniczeń w zbiorze
+                 Naturalne liczby. Kryteria zgodności systemu liniowego
+                 Równania diofantyne, ścisłe nierówności i nierównomierne nierówności są
+                 Uważano. Górne granice elementów
+                 I algorytmy budowy minimalnych zespołów prądotwórczych rozwiązań
+                 Dla wszystkich typów systemów podano. Te kryteria i odpowiadające im kryteria
+                 Algorytmy konstruowania minimalnego zestawu wspomagającego mogą być
+                 Używane do rozwiązywania wszystkich rozważanych typów systemów i systemów mieszanych
+                 Rodzaje.'''
+
+tokens = nltk.word_tokenize(polish_text)
 print (tokens)
 
 print ("="*10 + ' Pos Tagging Test: ' + "="*10)
-#doc4 = "This is pos tagger test for spacy pos tagger"
-doc4 = (u"To jest test tagger tag dla tagu spacy pos")
-tokens = nltk.word_tokenize(doc4)
 tagged = nltk.pos_tag(tokens)
-print (tagged[0:6])
+#print (tagged[0:6])
+print (tagged)
 
 print ("="*10 + ' Named Entity Recognizer (NER) Test: ' + "="*10)
-#doc5 = "Rami Eid is studying at Stony Brook University in New York"
-doc5 = (u"Rami Eid studiuje w Stony Brook University w Nowym Jorku")
-tokens = nltk.word_tokenize(doc5)
-tagged = nltk.pos_tag(tokens)
 entities = nltk.chunk.ne_chunk(tagged)
 print (entities)
-
-
 
 
 '''
