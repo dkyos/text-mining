@@ -34,9 +34,17 @@ tagged = nltk.pos_tag(tokens)
 #print (tagged[0:6])
 print (tagged)
 
+print ("="*10 + ' Noun phrase chunking Test: ' + "="*10)
+# function to test if something is a noun
+is_noun = lambda pos: pos[:2] == 'NN'
+# do the nlp stuff
+tokenized = nltk.word_tokenize(polish_text.lower())
+nouns = [word for (word, pos) in nltk.pos_tag(tokenized) if is_noun(pos)] 
+print (nouns)
+
 print ("="*10 + ' Named Entity Recognizer (NER) Test: ' + "="*10)
 entities = nltk.chunk.ne_chunk(tagged)
-print (entities)
+#print (entities)
 
 
 '''
