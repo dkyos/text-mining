@@ -37,7 +37,7 @@ def cleaning(article):
 
 # from http://www.cs.cornell.edu/People/pabo/movie-review-data/
 # download http://www.cs.cornell.edu/people/pabo/movie-review-data/rotten_imdb.tar.gz
-df = pd.read_table(DOC_FILE, names=['text'])
+df = pd.read_table(DOC_FILE, names=['text'], encoding = 'utf8')
 df.info()
 df.head(3)
 
@@ -45,6 +45,12 @@ text = df.applymap(cleaning)['text']
 text_list = [i.split() for i in text]
 print (len(text_list))
 print (text_list[0])
+
+for i in range(len(text_list)):
+    for j in range(len(text_list[i])):
+        #print ("[%d] %d: %s" % (i, j, text_list[i][j]))
+        text_list[i][j] = text_list[i][j] + ' (translated)'
+        print ("[%d] %d: %s" % (i, j, text_list[i][j]))
 
 from time import time
 import logging
@@ -73,7 +79,7 @@ start = time()
 Lda = gensim.models.ldamodel.LdaModel
 
 # Running and Trainign LDA model on the document term matrix.
-ldamodel = Lda(doc_term_matrix, num_topics=2, id2word = dictionary, passes=50)
+ldamodel = Lda(doc_term_matrix, num_topics=10, id2word = dictionary, passes=50)
 print ('used: {:.2f}s'.format(time()-start))
 print(ldamodel.print_topics(num_topics=2, num_words=4))
 
@@ -115,10 +121,9 @@ print (data)
 
 pyLDAvis.save_html(data, HTML_FILE)
 
-for i in range(len(c)):
-    print ('doc id:'+str(i))
-    print (lda[c[i]])
-    i=i+1
-
+#for i in range(len(c)):
+#    print ('doc id:'+str(i))
+#    print (lda[c[i]])
+#    i=i+1
 
 
