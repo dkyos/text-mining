@@ -33,7 +33,7 @@ for dir in $(cat ./input.dir);
                 #mv $SPWD/$DST/$dir/$file_name.txt $SPWD/$DST/$dir/$file_name.csv
 
                 # ;(59), |(124) 
-                libreoffice --headless --convert-to "csv:Text - txt - csv (StarCalc):124,,76,2" \
+                libreoffice --headless --convert-to "csv:Text - txt - csv (StarCalc):124,,76,1" \
                     --outdir $SPWD/$DST/$dir/ \
                     ./$file_name.xlsx
 
@@ -42,6 +42,7 @@ for dir in $(cat ./input.dir);
     done
 
 #options for libreoffice 124,,76,1 – these are four arguments:
+# https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Filter_Options#Tokens_1_to_5
     #the first parameter is the delimiter in the output file – 124 is the ASCII code for '|'
     #the second parameter is the text delimiter – it's missing because I don't want to wrap text in quotes
     #the third parameter is the file encoding – 76 is the internal OpenOffice code for UTF-8 (from the table on the documentation page)
