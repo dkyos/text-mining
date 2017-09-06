@@ -21,6 +21,12 @@ for dir in $(cat ./input.dir);
         echo `pwd`
         cd $SRC/$dir
 
+        for f in *.XLSX; 
+            do 
+                file_name=`basename $f .XLSX`
+                mv $file_name.XLSX $file_name.xlsx
+            done
+
         for f in *.xlsx; 
             do 
                 file_name=`basename $f .xlsx`
