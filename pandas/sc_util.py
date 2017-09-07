@@ -30,17 +30,22 @@ LOG_FILE = './log.txt';
 logger = logging.getLogger('mylogger');
 
 def initialize(LOG_LEVEL):
-    logger.setLevel(logging.LOG_LEVEL)
+    # CRITICAL, ERROR,, WARNING, INFO, DEBUG, NOTSET
+    logger.setLevel(LOG_LEVEL)
     fomatter = logging.Formatter(
         '[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s > %(message)s')
 
     fileHandler = logging.FileHandler(LOG_FILE)
-    logger.addHandler(fileHandler)
     fileHandler.setFormatter(fomatter)
+    logger.addHandler(fileHandler)
+
+    streamHandler = logging.StreamHandler()
+    #streamHandler.setFormatter(fomatter)
+    logger.addHandler(streamHandler)
 
     pd.set_option('display.max_columns', None)
     pd.set_option('display.max_rows', None)
-    logger.debug(pd.describe_option('display'))
+    #logger.debug(pd.describe_option('display'))
 
     #np.set_printoptions(threshold=np.inf)
     np.set_printoptions(threshold='nan')
