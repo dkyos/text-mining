@@ -32,6 +32,7 @@ df1['date'] = pd.to_datetime(df1['Posting date'], errors='coerce')
 df = pd.DataFrame({'Timestamp': df1.date, 'Category': df1.Category})
 
 df['Month/Year'] = df['Timestamp'].apply(lambda x: "%d/%d" % (x.month, x.year) if not pd.isnull(x) else '')
+np.set_printoptions(threshold=np.inf)
 print (df.groupby(['Month/Year', 'Category']).size())
 #print (df.groupby(['Month/Year', 'Category']).count())
 
