@@ -1,11 +1,13 @@
-asdf|Process Type|Posting date
-1|GA|1/2/2013
-2|TA|3/4/2013
-3|GA|12/12/2013
-4|SO|3/7/2013
-33|SO|3/7/2013
-3|SO|       
-4|GA| 
-2|GA|435634623
-45|GA|3/7/2013
-666|GA|3/7/2013
+Year, State,      Fungicide, Value
+2011, California, A,         12879
+2011, California, B,         29572
+2011, Florida,    A,         8645
+2011, Florida,    B,         19573
+2009, California, A,         8764
+2009, California, B,         98643
+2013, California, A,         12879
+2013, California, B,         29572
+2014, Florida,    A,         8645
+2015, Florida,    B,         19573
+2010, California, A,         8764
+2011, California, B,         98643
