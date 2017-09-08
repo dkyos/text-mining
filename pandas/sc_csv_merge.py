@@ -50,7 +50,7 @@ for name in csv_files:
     sc_util.logger.info('-'*30)
     sc_util.logger.info(name)
 
-    df = pd.read_csv(name, sep='|')
+    df = pd.read_csv(name, sep='|', error_bad_lines=False, quoting=csv.QUOTE_NONE, encoding='utf-8')
     #total_dataframe = sc_util.append_df(total_dataframe, df)
     total_dataframe = sc_util.concat_df(total_dataframe, df)
 

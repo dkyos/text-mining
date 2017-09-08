@@ -22,7 +22,7 @@ for attr, value in sorted(FLAGS.__flags.items()):
         sc_util.logger.info("{}={}".format(attr.upper(), value))
         sc_util.logger.info("")
 
-df = pd.read_csv(FLAGS.input, sep='|')
+df = pd.read_csv(FLAGS.input, sep='|', error_bad_lines=False, quoting=csv.QUOTE_NONE, encoding='utf-8')
 
 df['Category'] = df['Process Type']
 df['date'] = pd.to_datetime(df['Posting date'], errors='coerce')
