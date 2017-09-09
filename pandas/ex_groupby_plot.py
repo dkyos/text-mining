@@ -29,6 +29,9 @@ matplotlib.style.use('ggplot')
 import matplotlib.pyplot as plt
 
 #plt.figure()
+print(df.groupby(['Year','Fungicide']).sum())
+print(df.groupby(['Year','Fungicide']).sum().unstack())
+
 plot_df = df.groupby(['Year','Fungicide']).sum().unstack()
 #plot_df.plot(subplots=False)
 plot_df.plot(subplots=True)
