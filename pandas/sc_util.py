@@ -100,7 +100,29 @@ def concat_df(total_df, df):
 
     return total_df
 
+
+def align_concat_df(total_df, df):
+    total_df, df = total_df.align(df, axis=1)
+    
+    # align is same as
+    #common_columns = total_df.columns.union(df.columns)
+    #total_df = total_df.reindex(columns=common_columns)
+    #df = df.reindex(columns=common_columns)
+
+    #tmp = pd.concat([total_df, df])
+    #total_df = tmp
+
+    total_df = pd.concat([total_df, df])
+
+    logger.info(total_df.shape)
+
+    return total_df
+
+def align_df(total_df, df):
+    total_df, df = total_df.align(df, axis=1)
+
 def save_df(df, name):
+    logger.info(name)
     df.to_csv(name, sep='|', encoding='utf-8', index=False)
 
 

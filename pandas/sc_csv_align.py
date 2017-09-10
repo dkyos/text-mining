@@ -3,6 +3,7 @@
 ### libraries
 import csv
 import sys
+import os
 import scipy
 import numpy 
 import numpy as np
@@ -33,7 +34,7 @@ import glob
 sc.initialize(logging.INFO)
 
 tf.flags.DEFINE_string("indir", "./", "input directory containing csv Filenames")
-tf.flags.DEFINE_string("out", "total.csv", "Merge output Filename")
+tf.flags.DEFINE_string("outdir", "./", "Output directory")
 FLAGS = tf.flags.FLAGS
 FLAGS._parse_flags()
 sc.logger.info("\nParameters:")
@@ -46,6 +47,24 @@ sc.logger.info(csv_files)
 
 total_dataframe = pd.DataFrame() #creates a new dataframe that's empty
 
+for idx,  name in enumerate(csv_files):
+    sc.logger.info(str(idx) + ' ' + '-'*30)
+    sc.logger.info(name)
+    
+    df = pd.read_csv(name, sep='|'
+        , error_bad_lines=False
+        , engine='c'
+        , nrows = 5
+        , quoting=csv.QUOTE_NONE
+        , encoding='utf-8')
+
+    if idx == 0:
+        common_columns = df.columns
+    else:
+        common_columns = df.columns.union(common_columns)
+
+    sc.logger.info(common_columns)
+
 for name in csv_files:
     sc.logger.info('-'*30)
     sc.logger.info(name)
@@ -55,13 +74,9 @@ for name in csv_files:
         , engine='c'
         , quoting=csv.QUOTE_NONE
         , encoding='utf-8')
-    #total_dataframe = sc.append_df(total_dataframe, df)
-    #total_dataframe = sc.concat_df(total_dataframe, df)
-    total_dataframe = sc.align_concat_df(total_dataframe, df)
 
-sc.strip_col_name(total_dataframe)
-sc.save_df(total_dataframe, FLAGS.out)
-
+    df = df.reindex(columns=common_columns)
+    sc.save_df(df, FLAGS.outdir + '/' + os.path.basename(name) )
 
 
 
