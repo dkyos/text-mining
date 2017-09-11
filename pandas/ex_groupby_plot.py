@@ -35,7 +35,8 @@ print(df.groupby(['Year','Fungicide']).sum().unstack())
 plot_df = df.groupby(['Year','Fungicide']).sum().unstack()
 #plot_df.plot(subplots=False)
 plot_df.plot(subplots=True)
-plt.show()
+plt.savefig('foo.png')
+#plt.show()
 
 #plot_df = apple_fplot.unstack('Fungicide').loc[:, 'Value']
 #plot_df.index = pd.PeriodIndex(plot_df.index.tolist(), freq='A')
