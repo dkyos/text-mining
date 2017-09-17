@@ -9,7 +9,6 @@ import matplotlib
 import sklearn
 import datetime
 import pandas as pd
-import tensorflow as tf
 import logging
 from pandas.tools.plotting import scatter_matrix
 import matplotlib.pyplot as plt
@@ -125,5 +124,6 @@ def save_df(df, name):
     logger.info(name)
     df.to_csv(name, sep='|', encoding='utf-8', index=False)
 
-
+def save_df_index(df, name):
+    df.to_csv(name, sep='|', encoding='utf-8', index=True)
 
