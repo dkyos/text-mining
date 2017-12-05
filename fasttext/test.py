@@ -3,7 +3,7 @@
 from gensim.models import KeyedVectors
 import pprint
 
-model = KeyedVectors.load_word2vec_format('pl_model.vec')
+model = KeyedVectors.load_word2vec_format('pl.vec')
 
 # 가장 유사한 단어 30개 뽑기
 # wyświetlacz: display
