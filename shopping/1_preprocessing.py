@@ -5,7 +5,6 @@ import csv
 import pandas as pd
 import numpy as np
 from matplotlib import rcParams
-import seaborn as sns
 import matplotlib.pyplot as plt
 from collections import defaultdict
 import networkx as nx
@@ -14,25 +13,6 @@ from PIL import Image
 from os import path
 import matplotlib.patches as mpatches
 import random
-
-
-fig = plt.figure()
-ax = fig.add_subplot(1,1,1)
-plt.show()
-
-#get_ipython().magic('matplotlib inline')
-sns.set(style="whitegrid", palette="colorblind", color_codes=True, font_scale=1.4,
-        rc = {'font.size': 12, 'font.family':'NanumGothic'})
-
-
-# * 사용될 색상 팔렛트
-col_pal = "#FF5254 #5CACC4 #CEE879 #8CD19D #FCB653 #11644D #1D1313 #5F0D3B #FF7D10".split()
-sns.palplot(col_pal)
-
-
-# ---
-# ## 데이터 준비
-
 
 load_cols = ['product_id', 'item_id', 'vendor_item_id', 'product_info'
             , 'date', 'rating', 'member_id', 'review_content']
@@ -46,7 +26,6 @@ review_ds = pd.read_csv("./resource/Electric_Heater.csv"
 #print(" - " + str(review_ds.shape) + "\n")
 #print (review_ds.head())
 
-# 혼합된 데이터 타입 변환 
 review_ds = review_ds.astype(str)
 
 # timestamp type을 datetime으로 변환하자 
@@ -177,19 +156,4 @@ topic_word_ds.fillna('', inplace=True)
 
 ## cut letters to 10
 topic_word_ds = topic_word_ds.applymap(lambda x: x[:10])
-
-# * Hitmap 형태로 그리기 
-sns.set(style="whitegrid", palette="colorblind", color_codes=True, font_scale=1.1, font='NanumGothic' )
-plt.figure(figsize=(18,14))
-ax = sns.heatmap(topic_score_ds.ix[:,:10], annot=topic_word_ds.ix[:,:10].values, fmt="", linewidths=.2)
-
-print("=====================")
-print("=====================")
-print("=====================")
-plt.savefig('myfig')
-plt.show()
-sns.plt.show()
-print("-"*30)
-print("-"*30)
-print("-"*30)
 
