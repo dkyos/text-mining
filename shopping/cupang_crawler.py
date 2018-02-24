@@ -159,10 +159,11 @@ class CupangCrawler:
             except NoSuchElementException:
                 logger.debug("last page done")
                 break;
-            
+    
             current_page = current_page + 1;
             venue = wait(self.driver, 3).until(EC.element_to_be_clickable((By.CSS_SELECTOR, NEXT_BTN_CSS)))
-            venue.click()
+            #venue.click()
+            self.driver.execute_script('arguments[0].click()', venue)
             time.sleep(1)
         
     def item_list_update(self, parsed_item_list):
@@ -247,7 +248,8 @@ class CupangCrawler:
             '//*[@id="product-contents-placeholder"]/div/div/div[2]/div[1]/div[1]/div/div/a[2]'
         )))
         logger.info('click review button')
-        venue.click()
+        #venue.click()
+        self.driver.execute_script('arguments[0].click()', venue)
 
         try:
             logger.info('wait element present sdp-review__article__search-result')
@@ -370,7 +372,8 @@ class CupangCrawler:
                     '//*[@id="prod-review"]/div/div[5]/section[4]/div[3]/button[' + str(current_num) +']'
                 )))
                 logger.info('click: ' + str(page_num))
-                venue.click()
+                #venue.click()
+                self.driver.execute_script('arguments[0].click()', venue)
                 time.sleep(0.1)
 
             except NoSuchElementException:
