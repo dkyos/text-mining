@@ -20,9 +20,14 @@ test_string = ["Ich liebe diese Bibliothek"
 
 i=0 
 while i<len(test_string): 
+    print("================================")
+    print("Sentence: {}".format(test_string[i]))
     blob = TextBlob(test_string[i], analyzer=NaiveBayesAnalyzer())
-    print(blob.detect_language())
-    print(blob.translate(to="en"))
+    lang = blob.detect_language()
+    print("language: {}".format(lang))
+    print(blob.translate(from_lang=lang, to="en"))
     print(blob.sentiment)
+    blob = TextBlob(str(blob.translate(to="en")), analyzer=NaiveBayesAnalyzer())
+    print("Sentimenal after translated to english: {}".format(blob.sentiment))
     i=i+1 
 
